@@ -17,7 +17,7 @@ import numpy as np
 from astropy import units as u
 from os.path import expanduser
 import sunpy.map as mp
-
+import platform
 
 # =============================================================================
 # Solar Data
@@ -28,6 +28,11 @@ def buildsavepath_solardata(sunpymap_sequence):
     with this library should use this function to build the path info that will
     be used to store this information.
     '''
+    if platform.system() == 'Windows':
+        path_seperator = '\\'
+    if platform.system() == 'Linux':
+        path_seperator = '/'
+        
     # Gathering information to store the data
     # Time of data
     starttime = str(sunpymap_sequence[0].meta.get('date-obs'))[:4] + '_' + str(sunpymap_sequence[0].meta.get('date-obs'))[5:7] + '_' + str(sunpymap_sequence[0].meta.get('date-obs'))[8:13] + str(sunpymap_sequence[0].meta.get('date-obs'))[14:16] + str(sunpymap_sequence[0].meta.get('date-obs'))[17:19]
@@ -45,7 +50,7 @@ def buildsavepath_solardata(sunpymap_sequence):
     upperright = top_right_x + '_'  + top_right_y
     
     # Building the path that the data will be saved into.
-    path = expanduser('~') + '\\SolarToolkitData\\Solar_Data' + '\\' + wavelength + '\\' + starttime + '_' + endtime + '\\Coords_AS_' + lowerleft + '_' + upperright + '\\' 
+    path = expanduser('~') + path_seperator + 'SolarToolkitData' + path_seperator +  'Solar_Data' + path_seperator + wavelength + path_seperator + starttime + '_' + endtime + path_seperator + 'Coords_AS_' + lowerleft + '_' + upperright + path_seperator 
     
     Path(path).mkdir(parents=True, exist_ok=True)
     print('The data will be saved in the following path :', path)
@@ -61,7 +66,11 @@ def buildsavepath_classificationdata(sunpymap_sequence, classification_method):
     data obtained with this library should use this function to build the path 
     info that will be used to store this information.
     '''
-    #sunpymap_sequence = sunpymap_sequence[0]
+    if platform.system() == 'Windows':
+        path_seperator = '\\'
+    if platform.system() == 'Linux':
+        path_seperator = '/'
+        
     # Gathering information to store the data
     # Time of data
     starttime = str(sunpymap_sequence[0].meta.get('date-obs'))[:4] + '_' + str(sunpymap_sequence[0].meta.get('date-obs'))[5:7] + '_' + str(sunpymap_sequence[0].meta.get('date-obs'))[8:13] + str(sunpymap_sequence[0].meta.get('date-obs'))[14:16] + str(sunpymap_sequence[0].meta.get('date-obs'))[17:19]
@@ -79,7 +88,7 @@ def buildsavepath_classificationdata(sunpymap_sequence, classification_method):
     upperright = top_right_x + '_'  + top_right_y
     
     # Building the path that the data will be saved into.
-    path = expanduser('~') + '\\SolarToolkitData\\Classification_Data\\' + str(classification_method) + '\\' + wavelength + '\\' + starttime + '_' + endtime + '\\Coords_AS_' + lowerleft + '_' + upperright + '\\' 
+    path = expanduser('~') + path_seperator + 'SolarToolkitData' + path_seperator +  'Classification_Data' + path_seperator + str(classification_method) + path_seperator + wavelength + path_seperator + starttime + '_' + endtime + path_seperator + 'Coords_AS_' + lowerleft + '_' + upperright + path_seperator 
     
     Path(path).mkdir(parents=True, exist_ok=True)
     print('The data will be saved in the following path :', path)
@@ -94,6 +103,11 @@ def buildsavepath_submapclassificationdata(sunpymap_sequence, sunpysubmap_sequen
     obtained with this library should use this function to build the path 
     info that will be used to store this information.
     '''
+    if platform.system() == 'Windows':
+        path_seperator = '\\'
+    if platform.system() == 'Linux':
+        path_seperator = '/'
+        
     # Gathering information to store the data
     # Time of data
     starttime = str(sunpymap_sequence[0].meta.get('date-obs'))[:4] + '_' + str(sunpymap_sequence[0].meta.get('date-obs'))[5:7] + '_' + str(sunpymap_sequence[0].meta.get('date-obs'))[8:13] + str(sunpymap_sequence[0].meta.get('date-obs'))[14:16] + str(sunpymap_sequence[0].meta.get('date-obs'))[17:19]
@@ -112,7 +126,7 @@ def buildsavepath_submapclassificationdata(sunpymap_sequence, sunpysubmap_sequen
     submap_coords = 'Submap_Coords_AS_' + lowerleft_sub + upperright_sub 
     
     # Building the path that the data will be saved into.
-    path = expanduser('~') + '\\SolarToolkitData\\Classification_Data\\' + str(classification_method) + '\\' + wavelength + '\\' + starttime + '_' + endtime + '\\' + submap_coords + '\\'
+    path = expanduser('~') + path_seperator + 'SolarToolkitData' + path_seperator +  'Classification_Data' + path_seperator + str(classification_method) + path_seperator + wavelength + path_seperator + starttime + '_' + endtime + path_seperator + submap_coords + path_seperator
     
     Path(path).mkdir(parents=True, exist_ok=True)
     print('The data will be saved in the following path :', path)
@@ -129,6 +143,10 @@ def buildsavepath_analysisdata(sunpymap_sequence, analysis_method):
     obtained with this library should use this function to build the path 
     info that will be used to store this information.
     '''
+    if platform.system() == 'Windows':
+        path_seperator = '\\'
+    if platform.system() == 'Linux':
+        path_seperator = '/'
     # Gathering information to store the data
     # Time of data
     starttime = str(sunpymap_sequence[0].meta.get('date-obs'))[:4] + '_' + str(sunpymap_sequence[0].meta.get('date-obs'))[5:7] + '_' + str(sunpymap_sequence[0].meta.get('date-obs'))[8:13] + str(sunpymap_sequence[0].meta.get('date-obs'))[14:16] + str(sunpymap_sequence[0].meta.get('date-obs'))[17:19]
@@ -146,7 +164,7 @@ def buildsavepath_analysisdata(sunpymap_sequence, analysis_method):
     upperright = top_right_x + '_'  + top_right_y
     
     # Building the path that the data will be saved into.
-    path = expanduser('~') + '\\SolarToolkitData\\Analysis_Data\\' + str(analysis_method) + '\\' + wavelength + '\\' + starttime + '_' + endtime + '\\Coords_AS_' + lowerleft + '_' + upperright + '\\' 
+    path = expanduser('~') + path_seperator + 'SolarToolkitData' + path_seperator +  'Analysis_Data' + path_seperator + str(analysis_method) + path_seperator + wavelength + path_seperator + starttime + '_' + endtime + path_seperator + 'Coords_AS_' + lowerleft + '_' + upperright + path_seperator 
     
     Path(path).mkdir(parents=True, exist_ok=True)
     print('The data will be saved in the following path :', path)
@@ -160,6 +178,11 @@ def buildsavepath_submapanalysisdata(sunpymap_sequence, sunpysubmap_sequence, an
     obtained with this library should use this function to build the path 
     info that will be used to store this information.
     '''
+    if platform.system() == 'Windows':
+        path_seperator = '\\'
+    if platform.system() == 'Linux':
+        path_seperator = '/'
+        
     # Gathering information to store the data
     # Time of data
     starttime = str(sunpymap_sequence[0].meta.get('date-obs'))[:4] + '_' + str(sunpymap_sequence[0].meta.get('date-obs'))[5:7] + '_' + str(sunpymap_sequence[0].meta.get('date-obs'))[8:13] + str(sunpymap_sequence[0].meta.get('date-obs'))[14:16] + str(sunpymap_sequence[0].meta.get('date-obs'))[17:19]
@@ -186,7 +209,7 @@ def buildsavepath_submapanalysisdata(sunpymap_sequence, sunpysubmap_sequence, an
     submap_coords = 'Submap_Coords_AS_' + lowerleft_sub + upperright_sub 
     
     # Building the path that the data will be saved into.
-    path = expanduser('~') + '\\SolarToolkitData\\Analysis_Data\\' + str(analysis_method) + '\\' + wavelength + '\\' + starttime + '_' + endtime + '\\Coords_AS_' + lowerleft + '_' + upperright + '\\' + submap_coords + '\\'
+    path = expanduser('~') + path_seperator + 'SolarToolkitData' + path_seperator +  'Analysis_Data' + path_seperator + str(analysis_method) + path_seperator + wavelength + path_seperator + starttime + '_' + endtime + path_seperator + 'Coords_AS_' + lowerleft + '_' + upperright + path_seperator + submap_coords + path_seperator
     
     Path(path).mkdir(parents=True, exist_ok=True)
     print('The data will be saved in the following path :', path)
