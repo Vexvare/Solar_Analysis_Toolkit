@@ -4,6 +4,7 @@ Python library combining multiple solar analysis methods into one convenient pac
 
 Features a variety of methodologies commonly used to analyse features, events, and statistics of solar data.
 
+As of now, only Windows is currently supported. Pull requests are being made daily to support use on Linux distributions.
 
 # **Installation**
 TODO
