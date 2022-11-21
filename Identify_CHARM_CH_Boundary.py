@@ -96,12 +96,12 @@ def make_charm_boundary(time, *args):
     
     # Middle image 193 full-disk with overlay of boundary.
     fig = plt.figure(2)
-    ax = plt.subplot(projection = aia193_[int(len(aia193_)/2) + 1])
-    image = aia193_[int(len(aia193_)/2) + 1].plot()
-    aia193_[int(len(aia193_)/2) + 1].draw_grid()
+    ax = plt.subplot(projection = aia193_[int(len(aia193_)/2)])
+    image = aia193_[int(len(aia193_)/2)].plot()
+    aia193_[int(len(aia193_)/2)].draw_grid()
     plt.title('')
     boundary_labels = ['CHARM Boundary']
-    boundary_charm = plt.contour(charm_boundary[int(len(aia193_)/2) + 1]._data, 
+    boundary_charm = plt.contour(charm_boundary[int(len(aia193_)/2)]._data, 
                                  levels = [0.5,1.5], alpha = 0.85,
                                  color = 'black', cmap = cm.cool, linewidths = 0.5)
 

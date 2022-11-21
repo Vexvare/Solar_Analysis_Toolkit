@@ -115,8 +115,7 @@ class ActiveRegionCoronalLoops(ActiveRegion):
                     #coord_loops = maps.pixel_to_world(loop[:, 0] * u.pixel, loop[:, 1] * u.pixel)
                     for i, loo in enumerate(loop):
                         coord_loop_data[int(loop[i,1]),int(loop[i,0])] = 1
-                traceloops_maps = mp.Map([coord_loop_data, modified_header],
-                                              sequence = True)
+                traceloops_maps = mp.Map([coord_loop_data, modified_header])
                 
                 loops_list.append(traceloops_maps)
                 

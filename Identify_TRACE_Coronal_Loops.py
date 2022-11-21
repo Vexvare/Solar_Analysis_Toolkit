@@ -98,16 +98,26 @@ def coronal_loop_tracing(time, *args):
     
     # Middle image full-disk with overlay of loops.
     fig = plt.figure(2)
-    ax = plt.subplot(projection = aia[int(len(aia)/2) + 1])
-    image = aia[int(len(aia)/2) + 1].plot()
-    aia[int(len(aia)/2) + 1].draw_grid()
+    ax = plt.subplot(projection = aia[int(len(aia)/2)])
+    image = aia[int(len(aia)/2)].plot()
+    aia[int(len(aia)/2)].draw_grid()
     plt.title('')
     boundary_labels = ['TRACE Loops']
-    trace_loop_contour = plt.contour(loop_map[int(len(aia)/2) + 1]._data, 
+    trace_loop_contour = plt.contour(loop_map[int(len(aia)/2)]._data, 
                                    levels = [0.5,1.5], alpha = 0.85,
                                    color = 'white', cmap = cm.winter, linewidths = 0.5)
     trace_loop_contour.collections[0].set_label(boundary_labels[0])
-    plt.show()
+    
+    
+    
+    # Show all of the plots
+    plt.waitforbuttonpress()
+    while True:
+        plt.show()
+        if plt.waitforbuttonpress():
+            plt.close(1)
+            plt.close(2)
+            break
     
     
     

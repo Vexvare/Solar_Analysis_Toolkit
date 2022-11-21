@@ -100,11 +100,12 @@ def create_time_series_AIA(timeaia, wavelength, jsoc_email):
     fig = plt.figure()
     global ax
     ax = fig.add_subplot(projection = amap[0])
-    plt.title('Choose the area of interest.')
     ani = amap.plot()
     global num
     num = 0
     plot_function = interactive_plot_regionselect(fig, ax, sunpymap = amap)
+    
+    print('\nPress any button to continue.\n')
     plt.waitforbuttonpress()
     while True:
         plt.show()
