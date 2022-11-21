@@ -138,6 +138,7 @@ def run_solar_mfdfa(timeseries: np.ndarray,
     image = map_sequence_submaps.plot()
     
     # Show the chosen region.
+    print('\nPress any button to continue.\n')
     plt.waitforbuttonpress()
     while True:
         plt.show()
