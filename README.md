@@ -38,7 +38,9 @@ Alongside solar event identification methods being included in the Toolkit, sola
 <img src="Photos/MFDFA_TS_Example.png" alt="drawing" width="400"/> <img src="Photos/DFA_Interactive_Example.png" alt="drawing" width="400"/>
 </p>
 
-<img src="Photos/PlotPotentialSnapshot.png" alt="drawing" width="500"/>
+<p align="center">
+<img src="Photos/PlotPotentialSnapshot.png" alt="drawing" width="600"/>
+</p>
 
 Future versions work to improve functionality and useability of the Toolkit, as well as including more solar instruments, event identification methods, and analysis methods.
 
