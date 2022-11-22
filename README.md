@@ -14,7 +14,7 @@ Linux and Windows distributions are currently supported. The only supported tele
 
 # **Installation**
 
-Users may download the repository and solve for the dependencies. Works best with Python Anaconda, and it is recommended to start off in a clean anaconda enviornment and solve for the dependencies one at a time.
+Users may download the repository and solve for the dependencies. Works best with Python Anaconda, and it is recommended to start off in a clean anaconda enviornment and solve for the dependencies one at a time. Users may have to run the __init__.py file within SolarEventsClass before running certain programs.
 
 # **Usage**
 Several programs are built directly within the main directory of Solar_Analysis_Toolkit. To use these programs, just simply call the program name and input data when prompted. The reccomended order of running programs is as follows :
