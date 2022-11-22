@@ -77,7 +77,7 @@ jsoc_email = info.jsoc_email
 timeaia = a.Time(starttime, endtime)
 
 if instrument == 'HMI':
-    raise ValueError('The instument should be AIA, not HMI.')
+    raise ValueError('The JSOC cutout service using Sunpy only works for the AIA instrument, not HMI.')
 
 def create_time_series_AIA(timeaia, wavelength, jsoc_email):
     
@@ -150,8 +150,8 @@ def create_time_series_AIA(timeaia, wavelength, jsoc_email):
           '\n(' + str(chosen_xb/u.arcsec) + ', ' + str(chosen_yb/u.arcsec) + ') (',
           str(chosen_xf/u.arcsec) + ', ' + str(chosen_yf/u.arcsec) + ').\n')
 
-    aia_bottom_left = SkyCoord(chosen_xb, chosen_yb, frame = map_sequence[0].coordinate_frame)
-    aia_top_right = SkyCoord(chosen_xf, chosen_yf, frame = map_sequence[-1].coordinate_frame)
+    aia_bottom_left = SkyCoord(chosen_xb, chosen_yb, frame = amap[0].coordinate_frame)
+    aia_top_right = SkyCoord(chosen_xf, chosen_yf, frame = amap[-1].coordinate_frame)
 
     # Next create a submap from this single image. We want to crop the FOV of the 
     # area of interest by using a SunPY submap. This WILL be used to query the
