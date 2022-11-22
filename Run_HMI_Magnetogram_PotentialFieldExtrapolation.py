@@ -23,19 +23,8 @@ matplotlib.use('Qt5Agg')
 from QOL_Programs.Choose_GUI_togetdata import getting_info
 from SolarEventClass.HMI_Potential_Extrapolation import HMIMagnetogramExtrapolation
 
-
-
 def plot_potential_extrapolaiton_of_hmi_data(hmi_magnetogram, map_base, zshape, zrange, resample_divide):
 
-    # hmi_magnetogram_0 = hmi_magnetogram
-    # # Take the first map out if it is a mapsequence . . . 
-    # if isinstance(hmi_magnetogram, mp.MapSequence):
-    #     hmi_magnetogram_0 = hmi_magnetogram[0]
-        
-    # map_base_0 = map_base
-    # # Take the first map out if it is a mapsequence . . . 
-    # if isinstance(map_base, mp.MapSequence):
-        
     map_base_0 = map_base[0]
     hmi_magnetogram_0 = hmi_magnetogram[0]
 
@@ -70,14 +59,6 @@ def plot_potential_extrapolaiton_of_hmi_data(hmi_magnetogram, map_base, zshape, 
 
     ref_pix = (hmi_magnetogram_0.reference_pixel)*u.pix
 
-    #xb_as, xf_as, yb_as, yf_as = (xb-ref_pix[0]/u.pix)*0.6*u.arcsec, (xf-ref_pix[0]/u.pix)*0.6*u.arcsec, (yb-ref_pix[1]/u.pix)*0.6*u.arcsec, (yf-ref_pix[1]/u.pix)*0.6*u.arcsec
-    #bottom_left = SkyCoord(xb_as, yb_as, frame = hmi_magnetogram_0.coordinate_frame)
-    #top_right = SkyCoord(xf_as, yf_as, frame = hmi_magnetogram_0.coordinate_frame)
-    
-    # Crop the HMI and map_base maps around the area of interest.
-    #hmi_submap = hmi_magnetogram_0.submap(bottom_left=bottom_left, top_right=top_right)
-    #map_base_submap = map_base_0.submap(bottom_left=bottom_left, top_right=top_right)
-    
 
     xb_as, xf_as, yb_as, yf_as = (xb-ref_pix[0]/u.pix)*0.6*u.arcsec, (xf-ref_pix[0]/u.pix)*0.6*u.arcsec, (yb-ref_pix[1]/u.pix)*0.6*u.arcsec, (yf-ref_pix[1]/u.pix)*0.6*u.arcsec
     bottom_left = SkyCoord(xb_as, yb_as, frame = hmi_magnetogram_0.coordinate_frame)
@@ -110,9 +91,7 @@ def plot_potential_extrapolaiton_of_hmi_data(hmi_magnetogram, map_base, zshape, 
 def interactive_plot_regionselect(fig, ax, sunpymap):
     
     def onclick(event):
-        print('we clicked')
         global x, y, num, num_tracker
-        print(num)
         x = event.xdata
         y = event.ydata
         num_tracker = False
@@ -128,7 +107,6 @@ def interactive_plot_regionselect(fig, ax, sunpymap):
             yf = y
             num += 1
             num_tracker = True
-            print('drawing rect')
             rect = patches.Rectangle((xb,yb), xf-xb, yf-yb, fill = True, color = 'k', alpha = 0.5)
             ax.add_patch(rect)
         if num == 2 and num_tracker == False:
@@ -137,43 +115,6 @@ def interactive_plot_regionselect(fig, ax, sunpymap):
             rect.remove()
     fig.canvas.mpl_connect('button_press_event', onclick)
 
-# def interactive_plot_regionselect(fig, ax, sunpymap):
-#     '''
-#     Function to interact with the plot of interest and choose a rectangular region.
-#     '''
-#     def onclick(event):
-#         global x, y, num, num_tracker, ax
-#         x = event.xdata
-#         y = event.ydata
-#         num_tracker = False
-#         if num == 0 and num_tracker == False:
-#             global xb, yb
-#             xb = int(x + 0.5) - 0.5
-#             yb = int(y + 0.5) - 0.5
-#             num += 1
-#             num_tracker = True
-#         if num == 1 and num_tracker == False:
-#             global xf, yf, rect
-#             xf = int(x + 0.5) + 0.5
-#             yf = int(y + 0.5) + 0.5
-#             num += 1
-#             num_tracker = True
-#             if xf < xb :
-#                 xtemp = xf
-#                 xf = xb
-#                 xb = xtemp
-#             if yf < yb :
-#                 ytemp = yf
-#                 yf = yb
-#                 yb = ytemp
-#             rect = patches.Rectangle((xb,yb), xf-xb, yf-yb, fill = True, color = 'k', alpha = 0.5)
-#             ax.add_patch(rect)
-#         if num == 2 and num_tracker == False:
-#             num = 0
-#             num_tracker = False
-#             rect.remove()
-#     fig.canvas.mpl_connect('button_press_event', onclick)
-    
 
 
 if __name__ == '__main__':

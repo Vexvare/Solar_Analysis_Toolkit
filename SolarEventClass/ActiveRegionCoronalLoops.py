@@ -127,39 +127,3 @@ class ActiveRegionCoronalLoops(ActiveRegion):
         file_list = glob.glob(savepath + filename)
         self.trace_map = mp.Map(file_list, sequence = True)
         
-        
-        
-        
-        
-        
-        
-        
-        # # TODO write a check to make sure that the new parameters match all of the 
-        # # previously saved maps header comment . . . not just check if the file exists.
-        # # savepath = buildsavepath_classificationdata(sunpymap_sequence = self.mapsequence, classification_method = self.classification_method)
-        # # Checking for the first loop map . . . if it is not found in ../Solar_Analysis_Toolkit/Data/Classification_Data then TRACE will be ran.
-        # if not os.path.isfile(savepath + 'CoronalLoops_Map_0.fits'):
-        #     print('Previous Coronal Loops data of interest was not found.\nAttempting to find the Coronal Loops . . . ')
-        #     # Calling TRACE to identify the loops
-        #     loops = trace.occult2(self.aia.data, nsm1 = nsm1, rmin = rmin, 
-        #                           lmin = lmin, nstruc = nstruc, ngap = ngap, 
-        #                           qthresh1 = qthresh1, qthresh2 = qthresh2)
-        #     # Using the AIA meta data as the Loops meta. . . lazy coding but it works.
-        #     modified_header = copy.deepcopy(self.aia.meta)
-        #     modified_header['comment'] = 'TRACE LOOPS MASK. nsm1 =' + str(nsm1) +  ', rmin = ' + str(rmin) +  ', lmin = ' + str(lmin) +  ', nstruc = ' + str(nstruc) +  ', ngap = ' + str(ngap) +  ', qthresh1 = ' + str(qthresh1) +  ', qthresh2 = ' + str(qthresh2) +  '.'
-        #     # Creating a blank array to draw the loops
-        #     coord_loop_data = np.zeros((self.aia.data.shape))
-        #     for loop in loops:
-        #         # convert to array as easier to index `x` and `y` coordinates
-        #         loop = np.array(loop)
-        #         #coord_loops = self.aia.pixel_to_world(loop[:, 0] * u.pixel, loop[:, 1] * u.pixel)
-        #         for i, loo in enumerate(loop):
-        #             coord_loop_data[int(loop[i,1]),int(loop[i,0])] = 1
-        #     traceloops_maps = mp.Map([coord_loop_data, modified_header],
-        #                                   sequence = True)
-        #     traceloops_maps.save(savepath + 'CoronalLoops_Map_{index}.fits')
-        # # Finding the list of files that match the CHIMERA save data name.
-        # file_list = glob.glob(savepath + 'CoronalLoops_Map_*' + '.fits')
-        # traceloops_maps = mp.Map(file_list, sequence = True)
-        # return traceloops_maps
-        
