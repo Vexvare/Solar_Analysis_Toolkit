@@ -15,16 +15,18 @@ Several programs are built directly within the main directory of Solar_Analysis_
 
 If you don't already have data such as a time series, call Create_AIA_Time_Series.py and build a time series using the JSOC cutout service over an area of interest. If you do however have a time series segmented by individual .fits files, you may skip this part and reference them when running other analysis or identification methods.
 
-<Insert picture of making a time series here.>
 ![Photo1](Photos/Create_Time_Series.png)
 
 Once a data set of interest has been obtained, multiple solar event identification methods are built into the toolkit, examples being Identify_CHARM_CH_Boundary.py, Identify_HMI_Magnetogram_Network_Boundary.py, and Identify_TRACE_Coronal_Loops.py to name a few. Calling these files will prompt the user to identify either a time of interest, or a data set of interest, with which the identification method will use to identify solar features or events.
 
-<Picture of TRACE and CHARM CH Boundary here.>
+![Photo2](Photos/Identify_CH.png)
+![Photo3](Photos/Identify_Loops.png)
 
 Alongside solar event identification methods being included in the Toolkit, solar analysis methods such as Multifractal Detrended Fluctuation Analysis (MF-DFA) and Solarbextrapolation's Potential Field Extrapolation are included. These allow for analysis of solar data in quick and easy to use programs. Examples are shown below.
 
-<Examples of analysis programs.>
+![Photo4](Photos/Overlay_Example.png)
+![Photo5](Photos/MFDFA_TS_Example.png)
+![Photo6](Photos/PlotPotentialSnapshot.png)
 
 Future versions work to improve functionality and useability of the Toolkit, as well as including more solar instruments, event identification methods, and analysis methods.
 
