@@ -1,4 +1,4 @@
-![Title](Banner/Solar_Analysis_Toolkit.png)
+![Title](Photos/Solar_Analysis_Toolkit.png)
 
 Python library combining multiple solar analysis methods into one convenient package.
 
@@ -16,6 +16,7 @@ Several programs are built directly within the main directory of Solar_Analysis_
 If you don't already have data such as a time series, call Create_AIA_Time_Series.py and build a time series using the JSOC cutout service over an area of interest. If you do however have a time series segmented by individual .fits files, you may skip this part and reference them when running other analysis or identification methods.
 
 <Insert picture of making a time series here.>
+![Photo1](Photos/Create_Time_Series.png)
 
 Once a data set of interest has been obtained, multiple solar event identification methods are built into the toolkit, examples being Identify_CHARM_CH_Boundary.py, Identify_HMI_Magnetogram_Network_Boundary.py, and Identify_TRACE_Coronal_Loops.py to name a few. Calling these files will prompt the user to identify either a time of interest, or a data set of interest, with which the identification method will use to identify solar features or events.
 
