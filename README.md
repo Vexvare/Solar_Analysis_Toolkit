@@ -26,7 +26,7 @@ If you don't already have data such as a time series, call Create_AIA_Time_Serie
 Once a data set of interest has been obtained, multiple solar event identification methods are built into the toolkit, examples being Identify_CHARM_CH_Boundary.py, Identify_HMI_Magnetogram_Network_Boundary.py, and Identify_TRACE_Coronal_Loops.py to name a few. Calling these files will prompt the user to identify either a time of interest, or a data set of interest, with which the identification method will use to identify solar features or events.
 
 
-<img src="Photos/Identify_CH.png" alt="drawing" width="500"/> <img src="Photos/Identify_Loops.png" alt="drawing" width="500"/>
+<img src="Photos/Identify_CH.png" alt="drawing" width="400"/> <img src="Photos/Identify_Loops.png" alt="drawing" width="400"/>
 
 Alongside solar event identification methods being included in the Toolkit, solar analysis methods such as Multifractal Detrended Fluctuation Analysis (MF-DFA) and Solarbextrapolation's Potential Field Extrapolation are included. These allow for analysis of solar data in quick and easy to use programs. Examples are shown below.
 
@@ -34,7 +34,7 @@ Alongside solar event identification methods being included in the Toolkit, sola
 <img src="Photos/Overlay_Example.png" alt="drawing" width="500"/>
 </p>
 
-<img src="Photos/MFDFA_TS_Example.png" alt="drawing" width="500"/> <img src="Photos/DFA_Interactive_Example.png" alt="drawing" width="500"/>
+<img src="Photos/MFDFA_TS_Example.png" alt="drawing" width="400"/> <img src="Photos/DFA_Interactive_Example.png" alt="drawing" width="400"/>
 
 ![Photo7](Photos/PlotPotentialSnapshot.png)
 
