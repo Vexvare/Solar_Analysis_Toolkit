@@ -59,10 +59,14 @@ def plot_potential_extrapolaiton_of_hmi_data(hmi_magnetogram, map_base, zshape, 
 
     ref_pix = (hmi_magnetogram_0.reference_pixel)*u.pix
 
-
     xb_as, xf_as, yb_as, yf_as = (xb-ref_pix[0]/u.pix)*0.6*u.arcsec, (xf-ref_pix[0]/u.pix)*0.6*u.arcsec, (yb-ref_pix[1]/u.pix)*0.6*u.arcsec, (yf-ref_pix[1]/u.pix)*0.6*u.arcsec
     bottom_left = SkyCoord(xb_as, yb_as, frame = hmi_magnetogram_0.coordinate_frame)
     top_right = SkyCoord(xf_as, yf_as, frame = hmi_magnetogram_0.coordinate_frame)
+    
+    print('\nThe area of interest has been chosen.\nThe coordinates in Arc-Seconds are ',
+          '(bottom left x, bottom left y) (top right x, top right y):',
+          '\n(' + str(xb_as/u.arcsec) + ', ' + str(yb_as/u.arcsec) + ') (',
+          str(xf_as/u.arcsec) + ', ' + str(yf_as/u.arcsec) + ').\n')
     
     # Crop the HMI and map_base maps around the area of interest.
     hmi_submap = hmi_magnetogram_0.submap(bottom_left=bottom_left, top_right=top_right)

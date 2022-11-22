@@ -124,11 +124,34 @@ def create_time_series_AIA(timeaia, wavelength, jsoc_email):
 
     ref_pix = (amap[0].reference_pixel)*u.pix
 
-    xb_as, xf_as, yb_as, yf_as = (xb-ref_pix[0]/u.pix)*0.6*u.arcsec, (xf-ref_pix[0]/u.pix)*0.6*u.arcsec, (yb-ref_pix[1]/u.pix)*0.6*u.arcsec, (yf-ref_pix[1]/u.pix)*0.6*u.arcsec
-    aia_bottom_left = SkyCoord(xb_as, yb_as, frame = amap[0].coordinate_frame)
-    aia_top_right = SkyCoord(xf_as, yf_as, frame = amap[0].coordinate_frame)
+    bot_left = amap[0].bottom_left_coord
+    # We use the bottom left coord of the last map and add the top right of the 
+    # chosen box to this value. This gives the chosen coordinate for the final map.
+    top_right = amap[-1].bottom_left_coord
+    
+    xb_as = bot_left.Tx
+    yb_as = bot_left.Ty
+    xf_as = top_right.Tx
+    yf_as = top_right.Ty
+    
+    # These are the chosen coords in arc-seconds with respect to the (0,0) of the map
+    as_xb = amap[0].meta.get('cdelt1')*(xb*u.arcsec)
+    as_yb = amap[0].meta.get('cdelt2')*(yb*u.arcsec)
+    as_xf = amap[-1].meta.get('cdelt1')*(xf*u.arcsec)
+    as_yf = amap[-1].meta.get('cdelt2')*(yf*u.arcsec)
+    
+    chosen_xb = xb_as + as_xb 
+    chosen_yb = yb_as + as_yb
+    chosen_xf = xf_as + as_xf
+    chosen_yf = yf_as + as_yf
+    
+    print('\nThe area of interest has been chosen.\nThe coordinates in Arc-Seconds are ',
+          '(bottom left x, bottom left y) (top right x, top right y):',
+          '\n(' + str(chosen_xb/u.arcsec) + ', ' + str(chosen_yb/u.arcsec) + ') (',
+          str(chosen_xf/u.arcsec) + ', ' + str(chosen_yf/u.arcsec) + ').\n')
 
-    print('\nThe area of interest has been chosen.\nThe coordinates (x1,y1) (x2,y2) in Arc-Seconds are :' + ' (' + str(xb_as/u.arcsec) + ', ' + str(yb_as/u.arcsec) + ') (' + str(xf_as/u.arcsec) + ', ' + str(yf_as/u.arcsec) + ').')
+    aia_bottom_left = SkyCoord(chosen_xb, chosen_yb, frame = map_sequence[0].coordinate_frame)
+    aia_top_right = SkyCoord(chosen_xf, chosen_yf, frame = map_sequence[-1].coordinate_frame)
 
     # Next create a submap from this single image. We want to crop the FOV of the 
     # area of interest by using a SunPY submap. This WILL be used to query the
