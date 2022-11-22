@@ -24,7 +24,8 @@ class HMIMagnetogramExtrapolation(HMIMagnetogram):
         
         # Currently supported classification methods for a Magnetogram boundary.
         self.list_of_classification_methods = ['Solarbextrapolation']
-        self.mapsequence = mp.Map(args, sequence = True)
+        #self.mapsequence = mp.Map(args, sequence = True)
+        self.mapsequence = args[0]
         
         super().__init__(*args, 
                          classification = classification, 
@@ -35,8 +36,6 @@ class HMIMagnetogramExtrapolation(HMIMagnetogram):
         self.kwargs = kwargs
     
         if self.classification_method == 'Solarbextrapolation':
-            for m in args:
-                self.hmi = m
             self.solarbextrapolation(**kwargs)
     
     
@@ -57,7 +56,7 @@ class HMIMagnetogramExtrapolation(HMIMagnetogram):
         if not os.path.isfile(true_savepath):
             print('The potential extrapolation of interest was not found.\nAttempting to create the potential map . . . ')
                 
-            aPotExt = PotentialExtrapolator(map_magnetogram = self.hmi_submap, 
+            aPotExt = PotentialExtrapolator(map_magnetogram = self.hmi_submap[0], 
                                                 zshape = self.zshape, 
                                                 zrange = self.zrange, 
                                                 xrange = self.xrange, 
