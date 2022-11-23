@@ -442,6 +442,9 @@ def Chimera(aia171, aia193, aia211, *args):
     info = contour.get_paths()
     plt.show()
     plt.close()
+    
+    main_ch_ = False
+    
     for j in range(len(info)):
         
         
@@ -669,8 +672,10 @@ def Chimera(aia171, aia193, aia211, *args):
 
                         ############ Finding the largest CH, usually this is the one of interest #################
                         
-                        if arcar > 20000: #100000 :
+                        if arcar > 20000: :
                             
+                            main_ch_ = True
+                        
                             ch_boundary_of_interest = np.zeros((s[0],s[1]))
                             
                             iy = 0
@@ -681,6 +686,8 @@ def Chimera(aia171, aia193, aia211, *args):
                             while(iy < len(interior_boundary_arr)) :
                                 ch_boundary_of_interest[int(interior_boundary_arr[iy][1]),int(interior_boundary_arr[iy][0])] = 1
                                 iy += 1
+                                
+                        
                         
                         ############ Create an array for magnetic polarity ################
                         # Not implemented due to time constraints
@@ -727,8 +734,10 @@ def Chimera(aia171, aia193, aia211, *args):
     ############ Rotate old segmented array for comparison ################
     # Not implemented due to time constraints
 
-    return iarr, onarr, bound_arr_FD, bound_arr_FD_w_holes, bound_by_index, ch_boundary_of_interest
-
+    if main_ch_ == True:
+        return iarr, onarr, bound_arr_FD, bound_arr_FD_w_holes, bound_by_index, ch_boundary_of_interest
+    else:
+        return iarr, onarr, bound_arr_FD, bound_arr_FD_w_holes, bound_by_index
     
 
 

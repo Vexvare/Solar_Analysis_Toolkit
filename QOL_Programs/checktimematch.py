@@ -14,6 +14,7 @@ from datetime import timedelta
 import os
 from os.path import expanduser
 import re as re
+import platform
 
 
 def check_time_match(starttime, endtime, inputstarttime, inputendtime):
@@ -93,7 +94,11 @@ def grab_times_of_data_and_compare(inputstarttime, inputendtime):
     '''
     
     # Walk though all of the files in home/user/SolarToolkitData/Classification_Data/ . . . 
-    rootdir = expanduser('~') + '\\SolarToolkitData\\Classification_Data\\'
+    if platform.system() == 'Windows':
+        path_seperator = '\\'
+    if platform.system() == 'Linux':
+        path_seperator = '/'
+    rootdir = expanduser('~') + path_seperator +'SolarToolkitData' + path_seperator + 'Classification_Data' + path_seperator
     matchpathlist = []
     for subdir, dirs, files in os.walk(rootdir):
         for file in files:

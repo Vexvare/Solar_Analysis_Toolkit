@@ -67,13 +67,15 @@ class CoronalHoleBoundary(CoronalHole):
             if file_list == []:
                 
                 print('\nThe Chimera Coronal Hole boundary of interest was not found.\nAttempting to find the Chimera boundaries.\n\nCurrent time : ' + maps.meta.get('date-obs'))
-                iarr, onarr, bound_arr_FD, bound_arr_FD_w_holes, bound_by_index, ch_boundary_of_interest = chimera.Chimera(aia171maps[i], aia193maps[i], aia211maps[i], *args)
+                
+                chimera_boundaries = chimera.Chimera(aia171maps[i], aia193maps[i], aia211maps[i], *args)
     
                 # Using the AIA meta data as the CHARM meta . . . lazy coding but it works.
                 modified_header = copy.deepcopy(maps.meta)
                 modified_header['comment'] = 'CHIMERA MASK.'
                 
-                chimera_map = mp.Map([bound_arr_FD, modified_header])
+                chimera_map = mp.Map([chimera_boundaries[2], modified_header])
+                
                 boundary_list.append(chimera_map)
                 
         if boundary_list != []:
@@ -99,13 +101,13 @@ class CoronalHoleBoundary(CoronalHole):
                 
                 print('\nThe Charm Coronal Hole boundary of interest was not found.\nAttempting to find the Charm boundaries.\n\nCurrent time : ' + maps.meta.get('date-obs'))
     
-                iarr, onarr, bound_arr_FD, bound_arr_FD_w_holes, bound_by_index, ch_boundary_of_interest = Charm(maps, **kwargs)
+                charm_boundaries = Charm(maps, **kwargs)
     
                 # Using the AIA meta data as the CHARM meta . . . lazy coding but it works.
                 modified_header = copy.deepcopy(maps.meta)
                 modified_header['comment'] = 'CHARM MASK.'
                 
-                charm_map = mp.Map([bound_arr_FD, modified_header])
+                charm_map = mp.Map([charm_boundaries[2], modified_header])
                 boundary_list.append(charm_map)
                 
         if boundary_list != []:

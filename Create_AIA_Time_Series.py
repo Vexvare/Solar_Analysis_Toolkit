@@ -57,6 +57,7 @@ import matplotlib.patches as patches
 import matplotlib
 matplotlib.use('Qt5Agg')
 from pathlib import Path
+import platform
 
 # Local Module Imports
 from QOL_Programs.Build_Data_SavePath import buildsavepath_solardata
@@ -218,7 +219,13 @@ def create_time_series_AIA(timeaia, wavelength, jsoc_email):
     
     # Saving the maps into a local filepath (they also save into your sunpy 
     # data user directory). But I find it more convienent to save it locally.
-    pathrot = buildsavepath_solardata(sunpymap_sequence = derotated_sequence) + '\\Coalignbyrotation\\'
+    
+    if platform.system() == 'Windows':
+        path_seperator = '\\'
+    if platform.system() == 'Linux':
+        path_seperator = '/'
+        
+    pathrot = buildsavepath_solardata(sunpymap_sequence = derotated_sequence) + path_seperator + 'Coalignbyrotation' + path_seperator
     Path(pathrot).mkdir(parents=True, exist_ok=True)
     
     derotated_sequence.save(pathrot + 'Submap_{index}.fits')
@@ -226,7 +233,7 @@ def create_time_series_AIA(timeaia, wavelength, jsoc_email):
     # Also, I want to save the un-coaligned sequence so that I can see the difference between
     # the two in future references. This is not needed, but if you wish to do the
     # same feel free to uncomment the following line.
-    pathorig = buildsavepath_solardata(sunpymap_sequence = derotated_sequence) + '\\NoCoalignbyrotation\\'
+    pathorig = buildsavepath_solardata(sunpymap_sequence = derotated_sequence) + path_seperator + 'NoCoalignbyrotation' + path_seperator
     Path(pathorig).mkdir(parents=True, exist_ok=True)
     
     sequence.save(pathorig + 'Submap_{index}.fits')

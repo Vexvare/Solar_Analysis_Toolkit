@@ -226,6 +226,8 @@ def Charm(sunpymap, intensitylevel, *args):
     plt.show()
     plt.close()
     
+    main_ch_ = False
+    
     for j in range(len(info)):
         
         ########### Only takes values of minimum surface length and calculates area ###########
@@ -460,5 +462,10 @@ def Charm(sunpymap, intensitylevel, *args):
                             while(iy < len(interior_boundary_arr)) :
                                 ch_boundary_of_interest[int(interior_boundary_arr[iy][1]),int(interior_boundary_arr[iy][0])] = 1
                                 iy += 1
+                            
+                            main_ch_ = True
 
-    return iarr, onarr, bound_arr_FD, bound_arr_FD_w_holes, bound_by_index, ch_boundary_of_interest
+    if main_ch_ == True:
+        return iarr, onarr, bound_arr_FD, bound_arr_FD_w_holes, bound_by_index, ch_boundary_of_interest
+    else:
+        return iarr, onarr, bound_arr_FD, bound_arr_FD_w_holes, bound_by_index
