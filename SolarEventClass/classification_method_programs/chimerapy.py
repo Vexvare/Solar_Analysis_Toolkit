@@ -672,7 +672,7 @@ def Chimera(aia171, aia193, aia211, *args):
 
                         ############ Finding the largest CH, usually this is the one of interest #################
                         
-                        if arcar > 20000: :
+                        if arcar > 20000:
                             
                             main_ch_ = True
                         

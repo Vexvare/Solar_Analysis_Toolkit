@@ -14,6 +14,7 @@ from tkinter import filedialog
 from tkinter import messagebox
 import sunpy.map as mp
 from os.path import expanduser
+import platform
 
 class obtainmapfiles:
     
@@ -34,7 +35,11 @@ class obtainmapfiles:
                                        title = 'Choose the directory that contains the maps of interest.')
         self.parent.destroy()
 
-        self.listoffiles = sorted( glob.glob(self.filepath + '\\*.fits'))
+        if platform.system() == 'Windows':
+            path_seperator = '\\'
+        if platform.system() == 'Linux':
+            path_seperator = '/'
+        self.listoffiles = sorted( glob.glob(self.filepath + path_seperator + '*.fits'))
         if self.listoffiles == []:
             raise RuntimeError('No files were found.')
         print('\nFiles have been found.')
@@ -69,12 +74,17 @@ class obtainnumpyfiles:
                                                     title = 'Choose the directory of the data of interest.')
         self.dataparent.destroy()
         
-        self.listoffiles = sorted( glob.glob(self.filepath + '\\*.npy'))
+        if platform.system() == 'Windows':
+            path_seperator = '\\'
+        if platform.system() == 'Linux':
+            path_seperator = '/'
+        
+        self.listoffiles = sorted( glob.glob(self.filepath + path_seperator + '*.npy'))
         
         if self.listoffiles == []:
             raise RuntimeError('No files were found.')
         print('\nFiles have been found.')
-        self.listoffitsfiles = sorted( glob.glob(self.filepath + '\\*.fits'))
+        self.listoffitsfiles = sorted( glob.glob(self.filepath + path_seperator + '*.fits'))
         
         if self.listoffitsfiles != []:
             self.map_sequence = mp.Map( [ mp.Map(str(filename)) for filename in self.listoffitsfiles ], sequence = True)
