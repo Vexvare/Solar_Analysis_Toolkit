@@ -269,5 +269,3 @@ def eDFA(F: np.ndarray) -> np.ndarray:
     """
 
     return np.max(F) - np.min(F)
-
-# TODO: Add log calculator for q ≈ 0
